@@ -47,7 +47,7 @@ def initialize_chains(retriever, llm):
     return create_retrieval_chain(retriever, question_answer_chain)
 
 def main():
-    file_path = "farmakologi.pdf"
+    file_path = os.getenv("DOCUMENT_PATH")
     splits = load_and_split_document(file_path)
     
     vectorstore = initialize_vectorstore(splits, "text-embedding-3-small", os.getenv("OPENAI_SECRET_KEY"))
