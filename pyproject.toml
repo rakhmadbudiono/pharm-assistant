@@ -1,0 +1,69 @@
+[project]
+name = "pharm-assistant"
+version = "0.1.0"
+description = "A pharmaceutical knowledge assistant with RAG capabilities"
+authors = [
+    {name = "rakhmadbudiono", email = "rakhmadbudiono211@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "streamlit>=1.39.0",
+    "langchain>=0.3.0",
+    "langchain-classic>=0.1.0",
+    "langchain-community>=0.3.0",
+    "langchain-openai>=0.2.0",
+    "langchain-google-genai>=2.0.0",
+    "langchain-text-splitters>=0.3.0",
+    "langchain-core>=0.3.0",
+    "openai>=1.54.0",
+    "faiss-cpu>=1.7.4",
+    "pypdf>=5.1.0",
+    "python-dotenv>=1.0.0",
+    "langchain-huggingface>=1.0.1",
+    "flashrank>=0.2.10",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+
+
+[tool.black]
+line-length = 88
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+    \.git
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 88
+sections = ['FUTURE', 'STDLIB', 'THIRDPARTY', 'FIRSTPARTY', 'LOCALFOLDER']
+known_first_party = ["src"]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+lint.select = ["E", "F", "I", "N", "W", "B"]
+lint.ignore = ["E501"]
+
+[dependency-groups]
+dev = [
+    "black>=25.12.0",
+    "isort>=7.0.0",
+    "pre-commit>=4.5.1",
+    "ruff>=0.14.10",
+]
